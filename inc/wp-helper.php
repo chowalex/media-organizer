@@ -73,4 +73,13 @@ class WpHelper
 
         return $wpdb->query($wpdb->prepare($query, $values));
     }
+
+    public static function sanitize_array($input)
+    {
+        if (is_array($input)) {
+            return array_map('self::sanitize_array', $input);
+        } else {
+            return sanitize_text_field($input);
+        }
+    }
 }
