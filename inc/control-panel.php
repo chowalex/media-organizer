@@ -146,11 +146,10 @@ class ControlPanel
     {
         global $wpdb;
 
-        // sanitize_text_field returns "" if not found.
-        $node_id = sanitize_text_field($_POST["id"]);
-        $parent_id = sanitize_text_field($_POST["parent"]);
-        $name = sanitize_text_field($_POST["text"]);
-        $type = sanitize_text_field($_POST["type"]);
+        $node_id = isset($_POST['id']) ? sanitize_text_field($_POST['id']) : '';
+        $parent_id = isset($_POST['parent']) ? sanitize_text_field($_POST["parent"]) : '';
+        $name = isset($_POST['text']) ? sanitize_text_field($_POST["text"]) : '';
+        $type = isset($_POST['type']) ? sanitize_text_field($_POST["type"]) : '';
 
         $result = $wpdb->insert(
             $this->folders_table,
@@ -180,10 +179,10 @@ class ControlPanel
     {
         global $wpdb;
 
-        $node_id = sanitize_text_field($_POST["id"]);
-        $parent_id = sanitize_text_field($_POST["parent"]);
-        $name = sanitize_text_field($_POST["text"]);
-        $type = sanitize_text_field($_POST["type"]);
+        $node_id = isset($_POST['id']) ? sanitize_text_field($_POST['id']) : '';
+        $parent_id = isset($_POST['parent']) ? sanitize_text_field($_POST["parent"]) : '';
+        $name = isset($_POST['text']) ? sanitize_text_field($_POST["text"]) : '';
+        $type = isset($_POST['type']) ? sanitize_text_field($_POST["type"]) : '';
 
         $result = $wpdb->update(
             $this->folders_table,
@@ -209,7 +208,7 @@ class ControlPanel
      */
     public function deleteMediaFolder()
     {
-        $node_id = sanitize_text_field($_POST["id"]);
+        $node_id = isset($_POST['id']) ? sanitize_text_field($_POST['id']) : '';
 
         $result = self::deleteFolderWithChildren($node_id);
 
@@ -251,8 +250,8 @@ class ControlPanel
      */
     public function assignMediaFolder()
     {
-        $post_ids = $_POST["post_ids"];
-        $parent_id = sanitize_text_field($_POST["parent_id"]);
+        $post_ids = WpHelper::sanitize_array($_POST['post_ids']);
+        $parent_id = isset($_POST['parent_id']) ? sanitize_text_field($_POST['parent_id']) : '';
 
         $resultsArray = $this->assignFolderToItems($post_ids, $parent_id);
         wp_send_json_success($resultsArray);
@@ -281,7 +280,7 @@ class ControlPanel
      */
     public function unassignMediaFolder()
     {
-        $post_ids = $_POST["post_ids"];
+        $post_ids = WpHelper::sanitize_array($_POST["post_ids"]);
 
         $resultsArray = $this->unassignFolderFromItems($post_ids);
         wp_send_json_success($resultsArray);
@@ -312,8 +311,8 @@ class ControlPanel
         // name=folder_id is passed as a URL parameter by wp.
         echo sprintf(
             '<select id="%s" class="attachment-filters" name="%s" />',
-            ACCLECTIC_PARAM_SELECT_ELEMENT_ID,
-            ACCLECTIC_PARAM_FOLDER_ID);
+            esc_attr(ACCLECTIC_PARAM_SELECT_ELEMENT_ID),
+            esc_attr(ACCLECTIC_PARAM_FOLDER_ID));
     }
 
     /**
@@ -360,7 +359,7 @@ class ControlPanel
             return $query;
         }
 
-        $show_folder_id = $_REQUEST['query'][ACCLECTIC_PARAM_FOLDER_ID];
+        $show_folder_id = sanitize_text_field($_REQUEST['query'][ACCLECTIC_PARAM_FOLDER_ID]);
 
         if (!isset($query['post__not_in'])) {
             $query['post__not_in'] = array();
