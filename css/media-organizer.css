@@ -1,0 +1,259 @@
+/* Main style sheet for the media organizer module. */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+/* ******** Top-level blocks ******** */
+
+.control-panel-main {
+  opacity: 1;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  margin-right: 0px;
+  margin-top: -10px;
+  clear: both;
+  width: 350px;
+  float: left;
+  min-height: 100%;
+  height: calc(100vh - 32px);
+  font-family: 'Roboto';
+  font-weight: 300;
+  font-size: 14px;
+  color: #767676;
+  position: relative;
+}
+
+.acclectic-drag-tooltip {
+  background-color: #767676;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: 300;
+  font-size: 11px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.wrap-media-plus-control-panel {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  position: relative;
+  top: -20px;
+}
+
+/* ******** Modal ******** */
+
+.media-frame:not(.hide-menu):not(.hide-router) .media-frame-content, .media-frame:not(.hide-menu):not(.hide-router) .media-frame-router, .media-frame:not(.hide-menu):not(.hide-router) .media-frame-title, .media-frame:not(.hide-menu):not(.hide-router) .media-frame-toolbar {
+  left: 350px
+}
+
+.media-frame:not(.hide-menu):not(.hide-router) .media-frame-menu {
+  height: 100%;
+  width: 350px;
+  display: block!important;
+  bottom: unset;
+  height: 100%;
+}
+
+/* ******** Vertical Splitter ******** */
+
+.splitter {
+  flex: 0 0 auto;
+  background: url(../assets/resizer_background.png) center center;
+  min-height: 350px;
+  cursor: col-resize;
+  width: 15px;
+  max-width: 15px;
+  position: relative;
+  position: sticky;
+  top: 0;
+  float: left;
+  margin-left: 10px;
+  margin-top: -30px;
+  margin-right: 10px;
+}
+
+.splitter-handle {
+  width: 7px;
+  position: absolute;
+  top: 50%;
+  background: #dddddd;
+  padding: 6px 4px 6px 4px;
+  border-radius: 4px;
+}
+
+/* ******** Top header ******** */
+
+.control-panel-header {
+  width: 100%;
+  float: left;
+  clear: both;
+  padding: 20px 0 20px 0;
+  position: relative;
+}
+
+.control-panel-header .header-title {
+  width: 100%;
+  float: left;
+  clear: both;
+}
+
+.control-panel-header .header-title .header-label {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-size: 24px;
+  color: #767676;
+  line-height: 30px;
+  float: left;
+  margin-right: 10px;
+  font-weight: 300;
+  margin-bottom: 15px;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+}
+
+.control-panel-header .card-label {
+  margin-left: 10px;
+}
+
+.control-panel-header a .header-card-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.control-panel-header .header-cards {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin: 0;
+  padding: 0;
+}
+
+.control-panel-header .header-cards ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.control-panel-header .header-cards ul li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  float: left;
+  clear: none;
+}
+
+.control-panel-header .header-cards ul li a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Roboto';
+  font-weight: 300;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  padding: 10px 10px 10px 10px;
+  transition: all .3s ease;
+  /* Prevents extra space. */
+  line-height: 0px;
+  overflow: hidden;
+}
+
+.category_card_selected {
+  background-color: #88888844;
+}
+
+.control-panel-header .header-cards ul li a:hover {
+  background-color: #88888822;
+}
+
+.control-panel-header .header-buttons {
+  margin: 25px 0px 10px 0px;
+  display: block;
+  float: left;
+  clear: both;
+}
+
+.control-panel-header .header-action-button {
+  background-color: #76767688;
+  border-radius: 6px;
+  line-height: 0px;
+  padding: 10px;
+}
+
+.control-panel-header .header-action-button a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Roboto';
+  font-weight: 300;
+  line-height: 0px;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.control-panel-header .header-action-button span {
+  margin-left: 8px;
+  line-height: 24px;
+  float: right;
+}
+
+.control-panel-header .header-cards ul li a span {
+  display: inline-block;
+  font-size: 13px;
+  color: #767676;
+  max-width: 100%;
+  /* Should match icon height. */
+  line-height: 24px;
+  min-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.control-panel-header .header-cards ul li a .card-count {
+  float: right;
+  color: #ffffff;
+  background-color: #76767666;
+  font-size: 11px;
+  min-width: 30px;
+  height: 24px;
+  padding: 0px 5px 0px 5px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* ******** Pseudo select element for filtering by folder. ******** */
+
+#media-folder-filter-list {
+  display: none !important;
+}
+
+/* ******** Main folder tree. Styles defined under jstree. ******** */
+
+#acclectic-jstree {
+  width: 100%;
+  float: left;
+  clear: both;
+}
+
+/* ******** Overrides for jQuery resizable ******** */
+
+.ui-resizable {
+  position: relative;
+}
+
+.ui-resizable-e {
+  cursor: col-resize;
+  width: 30px;
+  right: -5px;
+  top: 0;
+  height: 100%;
+}
+
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle {
+  display: none;
+}

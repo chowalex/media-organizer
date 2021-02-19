@@ -1,0 +1,158 @@
+/* Style sheet for Acclectic dialog boxes. */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+.acclectic-modal {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  width: 400px;
+  max-width: 50%;
+  z-index: 16777271;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 500ms ease;
+}
+
+.acclectic-modal, .acclectic-modal * {
+  box-sizing: border-box;
+}
+
+.acclectic-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.acclectic-modal .acclectic-modal-title {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  color: #767676;
+  margin-bottom: 15px;
+}
+
+.acclectic-modal .acclectic-modal-description {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  color: #767676;
+  margin-bottom: 30px;
+}
+
+.acclectic-modal .acclectic-modal-buttons-section {
+  width: 100%;
+  min-width: 100%;
+  clear: both;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.acclectic-modal a {
+  min-width: 100px;
+  display: block;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  padding: 0px 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 3px;
+  margin: 10px 20px 0 0;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 500ms ease;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  cursor: pointer;
+  background-color: #767676ff;
+}
+
+.acclectic-modal a:hover {
+  background-color: #767676bb;
+}
+
+.acclectic-modal a.acclectic-modal-positive-button {}
+
+.acclectic-modal a.acclectic-modal-positive-button:hover {}
+
+.acclectic-modal a.acclectic-modal-negative-button:after {}
+
+.acclectic-modal a.acclectic-modal-negative-button:hover:after {}
+
+/* Background dimmer overlay. */
+
+.acclectic-modal:before {
+  position: fixed;
+  left: -7500px;
+  right: -7500px;
+  bottom: -7500px;
+  top: -7500px;
+  z-index: 0;
+  background-color: #00000088;
+  content: '';
+}
+
+.acclectic-modal .acclectic-modal-wrapper {
+  position: relative;
+  z-index: 10;
+  padding: 30px;
+  background-color: #ffffffbb;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px #00000055;
+  width: 100%;
+  float: left;
+  clear: both;
+}
+
+.acclectic-toast {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  max-width: 50%;
+  z-index: 16777271;
+  left: 50%;
+  top: 50px;
+  transform: translate(-50%, -50%);
+  transition: all 500ms ease;
+  border-radius: 3px;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  background-color: #767676ff;
+}
+
+.acclectic-toast .acclectic-toast-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #ffffff;
+  text-decoration: none;
+  margin: 10px 25px 10px 25px;
+  display: block;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.acclectic-toast, .acclectic-toast * {
+  box-sizing: border-box;
+}
+
+.acclectic-toast.active {
+  opacity: 1;
+  visibility: visible;
+}

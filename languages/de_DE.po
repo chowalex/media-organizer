@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Media Organizer\n"
+"Language: de\n"
+
+#: inc/strings.php:12 inc/ui-builder.php:56
+msgid "Folders"
+msgstr "Ordner"
+
+#: inc/strings.php:13
+msgid "Create Folder"
+msgstr "Ordner erstellen"
+
+#: inc/strings.php:14
+msgid "Rename Folder"
+msgstr "Ordner umbenennen"
+
+#: inc/strings.php:15
+msgid "Delete Folder"
+msgstr "Lösche Ordner"
+
+#: inc/strings.php:16
+msgid "All Items"
+msgstr "Alle Elemente"
+
+#: inc/strings.php:17
+msgid "Unassigned Items"
+msgstr "Nicht zugewiesene Elemente"
+
+#: inc/strings.php:18
+msgid "New Folder"
+msgstr "Neuer Ordner"
+
+#: inc/strings.php:19
+msgid "Moving one item"
+msgstr "Ein Element verschieben"
+
+#: inc/strings.php:21
+msgid "OK"
+msgstr "OK"
+
+#: inc/strings.php:22
+msgid "Cancel"
+msgstr "Stornieren"
+
+#: inc/strings.php:24
+msgid "Any subfolders will also be deleted, and all items in this folder and its subfolders will become unassigned."
+msgstr "Alle Unterordner werden ebenfalls gelöscht und alle Elemente in diesem Ordner und seinen Unterordnern werden nicht zugewiesen."
+
+#: inc/strings.php:20
+msgid "Moving {n} items"
+msgstr "{N} Elemente verschieben"
+
+#: inc/strings.php:23
+msgid "Delete Folder {f}?"
+msgstr "Ordner löschen {f}?"
+
