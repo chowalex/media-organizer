@@ -495,8 +495,8 @@
         }
 
         // response.data.folders contains the list of folders, or [] if none.
-        if (response.data.folders === undefined || response.data.folders.length == 0) {
-          console.log("No folders found.");
+        if (response.data.folders === undefined) {
+          console.log("Folders undefined. This shouldn't happen.");
           return;
         }
 
