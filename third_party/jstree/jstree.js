@@ -4545,11 +4545,8 @@
 							"border" : "1px solid silver",
 							"box-sizing" : "border-box",
 							"display" : "inline-block",
-							// splinetic_edit: Fix height of edit box to row height.
-							// "height" : (this._data.core.li_height) + "px",
-							// "lineHeight" : (this._data.core.li_height) + "px",
-							"height" : "36px",
-							"lineHeight" : "36px",
+							"height" : (this._data.core.li_height) + "px",
+							"lineHeight" : (this._data.core.li_height) + "px",
 							"width" : "150px" // will be set a bit further down
 						},
 						"blur" : $.proxy(function (e) {
@@ -6900,7 +6897,9 @@
 							}
 							else {
 								o = rel > h / 2 ? ['i', 'a', 'b'] : ['i', 'b', 'a'];
-							}
+              }
+              // acclectic: Disable moving before/after.
+              o = ['i'];
 							$.each(o, function (j, v) {
 								switch(v) {
 									case 'b':

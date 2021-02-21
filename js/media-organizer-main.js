@@ -2,7 +2,6 @@
 
 !function (jq) {
 
-  const DEFAULT_NEW_FOLDER_NAME = "New Folder";
   const DEFAULT_NEW_FOLDER_ORDER = "first";
   const DEFAULT_NEW_FOLDER_TYPE = "default";
 
@@ -22,6 +21,8 @@
   var editable = true;
 
   var uploadStatus;
+
+  var defaultNewFolderName = '[' + i18n['newFolder'] + ']';
 
   var me = {
     jstreeUrl: config.thirdPartyPath + '/jstree',
@@ -119,7 +120,7 @@
           tree.getNode(
             null,
             null,
-            DEFAULT_NEW_FOLDER_NAME,
+            defaultNewFolderName,
             DEFAULT_NEW_FOLDER_TYPE,
             0),
           DEFAULT_NEW_FOLDER_ORDER, false, false);
@@ -727,6 +728,7 @@
     dndConfig: {
       large_drop_target: true,
       large_drag_target: true,
+      copy: false,
       drag_check: function (data) {
         return false;
       }
@@ -746,7 +748,7 @@
             "action": function (data) {
               tree.get().create_node(
                 tree.get().get_node(data.reference),
-                tree.getNode(null, null, DEFAULT_NEW_FOLDER_NAME, DEFAULT_NEW_FOLDER_TYPE, 0),
+                tree.getNode(null, null, defaultNewFolderName, DEFAULT_NEW_FOLDER_TYPE, 0),
                 DEFAULT_NEW_FOLDER_ORDER, function (new_node) { }
               );
             }
@@ -831,7 +833,7 @@
     },
 
     myPlugins: editable
-      ? ["wholerow", "dnd", "contextmenu", "types", "node_customize"]
+      ? ["wholerow", "dnd", "contextmenu", "types", "node_customize", "sort"]
       : ["wholerow", "types", "node_customize"],
 
     setupNewTree: function (treeData) {
@@ -852,6 +854,7 @@
             "icons": true,
             responsive: false
           },
+          li_height: 36,
           check_callback: true,
           'data': treeData,
         }
