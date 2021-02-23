@@ -20,8 +20,6 @@
   var selectedFolderId = ALL_FOLDER_ID;
   var editable = true;
 
-  var uploadStatus;
-
   var defaultNewFolderName = '[' + i18n['newFolder'] + ']';
 
   var me = {
@@ -61,26 +59,26 @@
       if (wp && typeof (wp.Uploader) == "function") {
         jq.extend(wp.Uploader.prototype, {
           init: function () {
+
             // Set the folder_id parameter as expected by PHP, and show toast notification.
             this.uploader.bind("BeforeUpload", function (uploader, file) {
-              console.log("Before Upload");
               uploader.settings.multipart_params['folder_id'] = me.getSelectedFolder();
-              uploadStatus = acclecticDialog.getToast({ text: i18n['uploading'] });
-              uploadStatus.show();
             });
 
-            this.uploader.bind("UploadProgress", function (uploader, file) { });
-            this.uploader.bind("FilesAdded", function (uploader, file) { });
+            this.uploader.bind("FilesAdded", function (uploader, files) {
+              uploadTracker.setup(config.assetsPath, me.getSelectedFolderName());
+              uploadTracker.trackFiles(files);
+            });
+
+            this.uploader.bind("UploadProgress", function (uploader, file) {
+              uploadTracker.trackFiles(file);
+            });
 
             // Upon completion, update the folder tree and hide toast notification.
             this.uploader.bind("UploadComplete", function () {
               console.log("Upload complete");
               me.reloadGridItems(me.getSelectedFolder());
               me.getFolderTree();
-
-              if (uploadStatus) {
-                uploadStatus.hide();
-              }
             });
           }
         })
@@ -478,6 +476,25 @@
       return selectedFolderId != null ? selectedFolderId : ALL_FOLDER_ID;
     },
 
+    /** Returns the human readable name of the selected folder. */
+    getSelectedFolderName: function () {
+      let selectedFolderId = me.getSelectedFolder();
+      let selectedFolderName = i18n['allItems'];
+
+      // Early exit.
+      if (selectedFolderId == ALL_FOLDER_ID || selectedFolderId == UNASSIGNED_FOLDER_ID || !folders) {
+        return selectedFolderName;
+      }
+
+      folders.forEach(function (f, index) {
+        if (selectedFolderId === f.node_id) {
+          selectedFolderName = f.name;
+          return;
+        }
+      });
+      return selectedFolderName;
+    },
+
     /**
      * Gets the folder tree from the server and optionally creates or updates the tree UI.
      * @param {boolean} updateTreeUi if true, updates the tree UI
@@ -502,6 +519,7 @@
         }
 
         folders = response.data.folders;
+
         allItemCount = response.data.all_item_count;
         unassignedItemCount = response.data.unassigned_item_count;
         if (updateTreeUi) {
@@ -666,14 +684,21 @@
             filters[folderId] = {
               text: value.name,
               props: {
-                folder_id: folderId
+                folder_id: folderId,
+                uploadedTo: null
               }
             };
           });
           filters.unassigned = {
             text: 'Unassigned',
             props: {
-              folder_id: UNASSIGNED_FOLDER_ID,
+              // folder_id: UNASSIGNED_FOLDER_ID,
+              author: null,
+              order: "DESC",
+              orderby: "date",
+              status: null,
+              type: "image",
+              uploadedTo: null
             },
             priority: 10
           };
@@ -681,6 +706,7 @@
             text: 'All folders',
             props: {
               folder_id: ALL_FOLDER_ID,
+              uploadedTo: null
             },
             priority: 10
           };
@@ -1051,6 +1077,151 @@
     },
   };
 
+  // var uploadTracker = {
+
+  //   popup: null,
+
+  //   /** Tracking stats across all files. */
+  //   stats: {
+  //     filesDone: 0,
+  //     totalFiles: 0,
+  //     bytesDone: 0,
+  //     totalBytes: 0
+  //   },
+
+  //   /** A dictionary of files, keyed by ID, from the WP media uploader. */
+  //   rawFiles: {},
+
+  //   /**
+  //    * Adds the given files to the tracker and shows or updates the upload status dialog. This 
+  //    * should be called on FilesAdded (with an array of files) or UploadProgress (with one file).
+  //    * @param {array | object} files The file or array of files from the WP uploader.
+  //    */
+  //   trackFiles: function (files) {
+  //     uploadTracker.addFilesToTracker(files);
+  //     uploadTracker.computeStats();
+  //     uploadTracker.showOrUpdateDialog();
+  //   },
+
+  //   showOrUpdateDialog: function () {
+  //     if (this.popup == null) {
+  //       this.popup = acclecticDialog.getCustomPopup({
+  //         class: 'acclectic-upload-dialog',
+  //         html: '',
+  //       });
+  //     }
+  //     uploadTracker.setContentAndShow(uploadTracker.getUploaderHtml());
+  //   },
+
+  //   setContentAndShow: function () {
+  //     if (this.popup == null) return;
+
+  //     this.popup.update({
+  //       html: uploadTracker.getUploaderHtml()
+  //     });
+
+  //     this.popup.show();
+
+  //     jq(".acclectic-uploader-header .acclectic-uploader-close-button").on("click", function (e) {
+  //       e.preventDefault();
+  //       uploadTracker.closePopup();
+  //     });
+  //   },
+
+  //   closePopup: function () {
+  //     uploadTracker.resetTrackers();
+  //     uploadTracker.popup.hide();
+  //     uploadTracker.popup = null;
+  //     uploadTracker.rawFiles = {};
+  //   },
+
+  //   resetTrackers: function () {
+  //     this.stats = {
+  //       filesDone: 0,
+  //       totalFiles: 0,
+  //       bytesDone: 0,
+  //       totalBytes: 0
+  //     };
+  //   },
+
+  //   addFilesToTracker: function (uploaderFiles) {
+  //     var fileArray = [];
+  //     if (!Array.isArray(uploaderFiles)) {
+  //       fileArray.push(uploaderFiles);
+  //     } else {
+  //       fileArray = uploaderFiles;
+  //     }
+
+  //     fileArray.forEach(function (f, index) {
+  //       uploadTracker.rawFiles[f.id] = f;
+  //     });
+  //   },
+
+  //   computeStats: function () {
+  //     uploadTracker.resetTrackers();
+
+  //     for (var fileId in uploadTracker.rawFiles) {
+  //       var file = uploadTracker.rawFiles[fileId];
+  //       var fileBytes = parseInt(file.size) || 0;
+  //       var filePercent = parseInt(file.percent) || 0;
+
+  //       uploadTracker.stats.totalFiles += 1;
+  //       uploadTracker.stats.totalBytes += fileBytes;
+
+  //       uploadTracker.stats.bytesDone += Math.round(fileBytes * filePercent / 100);
+  //       if (filePercent >= 100) {
+  //         uploadTracker.stats.filesDone += 1;
+  //       }
+  //     }
+  //   },
+
+  //   fileSizeIEC: function (a, b, c, d, e) {
+  //     return (b = Math, c = b.log, d = 1024, e = c(a) / c(d) | 0, a / b.pow(d, e)).toFixed(0)
+  //       + ' ' + (e ? 'KMGTPEZY'[--e] + 'B' : 'Bytes')
+  //   },
+
+  //   getHeader: function () {
+  //     return wp.element.createElement(UploadStatusHeader, {
+  //       percent: Math.round(this.stats.filesDone / this.stats.totalFiles * 100),
+  //       files_done: this.stats.filesDone,
+  //       total_files: this.stats.totalFiles,
+  //       folder: me.getSelectedFolderName()
+  //     });
+  //   },
+
+  //   getFileStatus: function (fileDict) {
+  //     return wp.element.createElement(FileStatus, {
+  //       filename: fileDict.name,
+  //       filesize: uploadTracker.fileSizeIEC(fileDict.size),
+  //       percent: fileDict.percent
+  //     });
+  //   },
+
+  //   getAllFileStatus: function () {
+  //     var allFileStatusElements = [];
+
+  //     for (var fileId in uploadTracker.rawFiles) {
+  //       var fileDict = uploadTracker.rawFiles[fileId];
+  //       allFileStatusElements.push(uploadTracker.getFileStatus(fileDict));
+  //     }
+
+  //     return wp.element.createElement(
+  //       'div',
+  //       { class: 'acclectic-uploader-all-files' },
+  //       allFileStatusElements);
+  //   },
+
+  //   getUploaderHtml: function () {
+  //     return wp.element.renderToString(
+  //       wp.element.createElement(
+  //         'div',
+  //         { class: 'acclectic-uploader-content' },
+  //         uploadTracker.getHeader(), uploadTracker.getAllFileStatus()
+  //       )
+  //     );
+  //   }
+  // };
+
   jq(document).ready(function () {
     console.log("Document ready.");
     me.init()
@@ -1080,6 +1251,81 @@
       return React.createElement('div', { class: 'acclectic-drag-tooltip' }, innerContents);
     }
   }
+
+  // class FileStatusProgressBar extends React.Component {
+  //   render() {
+  //     var width = this.props.percent + '%';
+  //     var filledBar = wp.element.createElement(
+  //       'div',
+  //       { class: 'acclectic-uploader-progress-bar-filled', style: 'width: ' + width });
+  //     return wp.element.createElement('div', { class: 'acclectic-uploader-progress-bar-background' }, filledBar);
+  //   }
+  // }
+
+  // /**
+  //  * A React component that renders a file upload status. Expects properties: 
+  //  * * filename: The name of the file
+  //  * * filesize: A human-readable string of the file size (e.g. 56kB)
+  //  * * percent: An integer representing the percentage complete (e.g. 20)
+  //  */
+  // class FileStatus extends React.Component {
+  //   render() {
+  //     var percentDone = parseInt(this.props.percent) || 0;
+  //     var iconFile = 'uploader-uploading.svg';
+  //     if (percentDone >= 100) {
+  //       iconFile = 'uploader-done.svg';
+  //     }
+  //     var fileText = '';
+  //     if (this.props.filename) {
+  //       fileText += this.props.filename;
+  //     }
+  //     if (this.props.filesize) {
+  //       fileText += ' ' + this.props.filesize;
+  //     }
+
+  //     var icon = wp.element.createElement(
+  //       'img',
+  //       { class: 'acclectic-uploader-file-icon', src: config.assetsPath + iconFile });
+  //     var progressBar = wp.element.createElement(FileStatusProgressBar, { percent: percentDone });
+  //     var textStatus = wp.element.createElement('div', { class: 'acclectic-uploader-file-text' }, fileText);
+  //     return wp.element.createElement('div', { class: 'acclectic-uploader-file-line' }, icon, progressBar, textStatus);
+  //   }
+  // }
+
+  // /**
+  //  * A React component that renders an upload status header. Expects properties:
+  //  * * folder: The name of the destination folder
+  //  * * files_done: The number of files done
+  //  * * total_files: The total number of files
+  //  * * percent: An integer representing the total percentage complete (e.g. 20)
+  //  */
+  // class UploadStatusHeader extends React.Component {
+  //   render() {
+  //     var percentDone = parseInt(this.props.percent) || 0;
+  //     var filesDone = parseInt(this.props.files_done) || 0;
+  //     var totalFiles = parseInt(this.props.total_files) || 0;
+  //     var folder = this.props.folder || 'All Items';
+
+  //     var titleDiv = wp.element.createElement(
+  //       'div',
+  //       { class: 'acclectic-uploader-header-title' },
+  //       'Uploading to ' + folder);
+  //     var closeIcon = wp.element.createElement(
+  //       'a', { class: 'acclectic-uploader-close-button', href: '#' },
+  //       wp.element.createElement('img', { src: config.assetsPath + 'close-24px.svg' }));
+  //     var progressBar = wp.element.createElement(FileStatusProgressBar, { percent: percentDone });
+  //     var statusDiv = wp.element.createElement(
+  //       'div',
+  //       { class: 'acclectic-uploader-header-status' },
+  //       filesDone + ' of ' + totalFiles + ' done.');
+
+  //     return wp.element.createElement(
+  //       'div',
+  //       { class: 'acclectic-uploader-header' },
+  //       closeIcon, titleDiv, statusDiv, progressBar);
+  //   }
+  // }
+
 
 }(jQuery);
 

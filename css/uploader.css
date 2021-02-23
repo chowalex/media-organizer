@@ -1,0 +1,101 @@
+/* Main style sheet for the media uploader status box. */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+.acclectic-upload-dialog {
+  position: fixed;
+  max-width: 50%;
+  width: 500px;
+  max-height: 600px;
+  right: 25px;
+  bottom: 25px;
+  padding: 15px;
+  transition: all 500ms ease;
+  border-radius: 10px;
+  box-shadow: none !important;
+  border: 1px solid #767676 !important;
+  background-color: #efefef;
+}
+
+.acclectic-uploader-content {
+  overflow: hidden;
+}
+
+.acclectic-uploader-content .acclectic-uploader-header {}
+
+.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-header-title {
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-close-button {
+  float: right;
+  box-shadow: none !important;
+}
+
+.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-close-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-header-status {
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-progress-bar-background {
+  background-color: #cccccc;
+  width: 100%;
+  margin: 0px 10px 3px 0px;
+  clear: both;
+  margin-bottom: 20px;
+}
+
+.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-progress-bar-filled {
+  background-color: #0a88ad;
+  height: 10px;
+}
+
+.acclectic-uploader-content .acclectic-uploader-all-files {
+  overflow: auto;
+  width: 100%;
+  max-height: 250px;
+  position: relative;
+}
+
+.acclectic-uploader-content .acclectic-uploader-file-line {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.acclectic-uploader-content .acclectic-uploader-file-icon {
+  width: 20px;
+  float: left;
+}
+
+.acclectic-uploader-content .acclectic-uploader-all-files .acclectic-uploader-progress-bar-background {
+  background-color: #cccccc;
+  width: calc(100% - 40px);
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  float: right;
+}
+
+.acclectic-uploader-content .acclectic-uploader-all-files .acclectic-uploader-progress-bar-filled {
+  background-color: #8cc63f;
+  height: 10px;
+}
+
+.acclectic-uploader-content .acclectic-uploader-file-text {
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  margin-left: 30px;
+  clear: both;
+}

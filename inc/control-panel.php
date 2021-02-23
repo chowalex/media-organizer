@@ -75,6 +75,12 @@ class ControlPanel
             ACCLECTIC_PLUGIN_NAME,
             'all');
         wp_enqueue_style(
+            'acclectic-media-uploader-css',
+            ACCLECTIC_CSS_URL . 'uploader.css',
+            array(),
+            ACCLECTIC_PLUGIN_NAME,
+            'all');
+        wp_enqueue_style(
             'acclectic-jstree-css',
             ACCLECTIC_THIRD_PARTY_URL . 'jstree/themes/acclectic/style.css',
             array(),
@@ -99,6 +105,12 @@ class ControlPanel
         wp_register_script(
             'acclectic-dialogs',
             ACCLECTIC_JS_URL . 'acclectic-dialogs.js',
+            ['jquery', 'wp-element'],
+            ACCLECTIC_PLUGIN_NAME,
+            false/* in_footer */);
+        wp_register_script(
+            'acclectic-upload-tracker',
+            ACCLECTIC_JS_URL . 'upload-tracker.js',
             ['jquery', 'wp-element'],
             ACCLECTIC_PLUGIN_NAME,
             false/* in_footer */);
@@ -136,6 +148,7 @@ class ControlPanel
         wp_enqueue_script('acclectic-jstree');
         wp_enqueue_script('acclectic-jstree-plugins');
         wp_enqueue_script('acclectic-dialogs');
+        wp_enqueue_script('acclectic-upload-tracker');
         wp_enqueue_script('acclectic-media-organizer-main');
     }
 

@@ -1,4 +1,4 @@
-/* FOOBAR */
+/* Disable folder move markers */
 
 .jstree-above, .jstree-inside, .jstree-below {
   visibility: hidden;
