@@ -156,3 +156,14 @@
   opacity: 1;
   visibility: visible;
 }
+
+.acclectic-custom-popup {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 16777271;
+}
+
+.acclectic-custom-popup.active {
+  opacity: 1;
+  visibility: visible;
+}

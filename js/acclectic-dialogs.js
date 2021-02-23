@@ -1,11 +1,12 @@
 'use strict';
 window.acclecticDialog = function (jq) {
 
-  const PopupType = Object.freeze({ modal: 1, toast: 2 });
+  const PopupType = Object.freeze({ modal: 1, toast: 2, custom: 3 });
 
   return {
     getModal: getModal,
     getToast: getToast,
+    getCustomPopup: getCustomPopup,
   };
 
   /**
@@ -24,6 +25,14 @@ window.acclecticDialog = function (jq) {
     return getPopup(PopupType.toast, config);
   }
 
+  /**
+   * Returns a popup with custom HTML. Call show() on the returned object to display the popup.
+   * @param {dict} config Configuration parameters for the popup.
+   */
+  function getCustomPopup(config) {
+    return getPopup(PopupType.custom, config);
+  }
+
   function getPopup(type, config) {
     let popup = {};
     let uuid = getUuid();
@@ -34,6 +43,7 @@ window.acclecticDialog = function (jq) {
       element: popupElement,
       show: show,
       hide: hide,
+      update: update,
     }
 
     function show() {
@@ -46,6 +56,14 @@ window.acclecticDialog = function (jq) {
       this.element.remove();
     }
 
+    function update(newConfig) {
+      if (type !== PopupType.custom) {
+        console.log('update() is only available for custom popups.');
+        return;
+      }
+      this.element.innerHTML = newConfig.html;
+    }
+
     return popup;
   }
 
@@ -56,6 +74,8 @@ window.acclecticDialog = function (jq) {
         break;
       case PopupType.toast:
         return getToastElement(uuid, config);
+      case PopupType.custom:
+        return getCustomElement(uuid, config);
       default:
         console.log("Unexpected popup type.");
         break;
@@ -129,6 +149,14 @@ window.acclecticDialog = function (jq) {
     innerSpan.innerHTML = config.text;
 
     element.innerHTML = innerSpan.outerHTML;
+    return element;
+  }
+
+  function getCustomElement(uuid, config) {
+    let element = document.createElement('div');
+    element.id = uuid;
+    element.setAttribute('class', 'acclectic-custom-popup ' + config.class);
+    element.innerHTML = config.html;
     return element;
   }
 
