@@ -416,7 +416,7 @@
 
     /** Returns a tooltip indicating the number of items being moved/assigned. */
     getDragText: function (num) {
-      var contentString = (parseInt(num) > 0) ? i18n['movingPluralItems'] : i18n['movingSingularItem'];
+      var contentString = (parseInt(num) > 1) ? i18n['movingPluralItems'] : i18n['movingSingularItem'];
       tooltip = wp.element.createElement(DragTooltip, { contents: contentString, n: num }, null);
       return wp.element.renderToString(tooltip);
     },
