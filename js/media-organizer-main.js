@@ -20,8 +20,6 @@
   var selectedFolderId = ALL_FOLDER_ID;
   var editable = true;
 
-  var uploadStatus;
-
   var defaultNewFolderName = '[' + i18n['newFolder'] + ']';
 
   var me = {
@@ -61,26 +59,26 @@
       if (wp && typeof (wp.Uploader) == "function") {
         jq.extend(wp.Uploader.prototype, {
           init: function () {
+
             // Set the folder_id parameter as expected by PHP, and show toast notification.
             this.uploader.bind("BeforeUpload", function (uploader, file) {
-              console.log("Before Upload");
               uploader.settings.multipart_params['folder_id'] = me.getSelectedFolder();
-              uploadStatus = acclecticDialog.getToast({ text: i18n['uploading'] });
-              uploadStatus.show();
             });
 
-            this.uploader.bind("UploadProgress", function (uploader, file) { });
-            this.uploader.bind("FilesAdded", function (uploader, file) { });
+            this.uploader.bind("FilesAdded", function (uploader, files) {
+              uploadTracker.setup(config.assetsPath, me.getSelectedFolderName());
+              uploadTracker.trackFiles(files);
+            });
+
+            this.uploader.bind("UploadProgress", function (uploader, file) {
+              uploadTracker.trackFiles(file);
+            });
 
             // Upon completion, update the folder tree and hide toast notification.
             this.uploader.bind("UploadComplete", function () {
               console.log("Upload complete");
               me.reloadGridItems(me.getSelectedFolder());
               me.getFolderTree();
-
-              if (uploadStatus) {
-                uploadStatus.hide();
-              }
             });
           }
         })
@@ -478,6 +476,25 @@
       return selectedFolderId != null ? selectedFolderId : ALL_FOLDER_ID;
     },
 
+    /** Returns the human readable name of the selected folder. */
+    getSelectedFolderName: function () {
+      let selectedFolderId = me.getSelectedFolder();
+      let selectedFolderName = i18n['allItems'];
+
+      // Early exit.
+      if (selectedFolderId == ALL_FOLDER_ID || selectedFolderId == UNASSIGNED_FOLDER_ID || !folders) {
+        return selectedFolderName;
+      }
+
+      folders.forEach(function (f, index) {
+        if (selectedFolderId === f.node_id) {
+          selectedFolderName = f.name;
+          return;
+        }
+      });
+      return selectedFolderName;
+    },
+
     /**
      * Gets the folder tree from the server and optionally creates or updates the tree UI.
      * @param {boolean} updateTreeUi if true, updates the tree UI
@@ -502,6 +519,7 @@
         }
 
         folders = response.data.folders;
+
         allItemCount = response.data.all_item_count;
         unassignedItemCount = response.data.unassigned_item_count;
         if (updateTreeUi) {
@@ -666,7 +684,7 @@
             filters[folderId] = {
               text: value.name,
               props: {
-                folder_id: folderId
+                folder_id: folderId,
               }
             };
           });
