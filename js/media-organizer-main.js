@@ -12,6 +12,7 @@
   const UNASSIGNED_FOLDER_ID = "unassigned";
 
   const DISABLE_ANIMATIONS = false;
+  const HIDE_COUNTS_IF_ZERO = true;
 
   var config = acclecticMediaOrganizerConfig;
   var folders = [];
@@ -807,8 +808,9 @@
 
     nodeCustomizeConfig: {
       default: function (el, node) {
-        var spanInner = node.li_attr["num_children"];
-        var spanOuter = "<span class=\"jstree-child-count\">" + spanInner + "</span>";
+        var numChildren = parseInt(node.li_attr["num_children"]) || 0;
+        if (numChildren <= 0 && HIDE_COUNTS_IF_ZERO) return;
+        var spanOuter = "<span class=\"jstree-child-count\">" + numChildren + "</span>";
 
         // An el of a parent node can contain many matches, so use children() instead of find().
         jq(el).children('a').append(spanOuter);
