@@ -39,14 +39,14 @@
   height: 24px;
 }
 
-.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-header-status {
+.acclectic-uploader-content .acclectic-uploader-header-stats .acclectic-uploader-header-status {
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
   font-size: 10px;
   margin-bottom: 2px;
 }
 
-.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-progress-bar-background {
+.acclectic-uploader-content .acclectic-uploader-header-stats .acclectic-uploader-progress-bar-background {
   background-color: #cccccc;
   width: 100%;
   margin: 0px 10px 3px 0px;
@@ -54,7 +54,7 @@
   margin-bottom: 20px;
 }
 
-.acclectic-uploader-content .acclectic-uploader-header .acclectic-uploader-progress-bar-filled {
+.acclectic-uploader-content .acclectic-uploader-header-stats .acclectic-uploader-progress-bar-filled {
   background-color: #0a88ad;
   height: 10px;
 }

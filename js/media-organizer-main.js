@@ -72,7 +72,7 @@
             });
 
             this.uploader.bind("UploadProgress", function (uploader, file) {
-              uploadTracker.trackFiles(file);
+              uploadTracker.updateFile(file);
             });
 
             // Upon completion, update the folder tree and hide toast notification.

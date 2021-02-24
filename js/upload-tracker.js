@@ -6,13 +6,14 @@ window.uploadTracker = function (jq) {
       var width = this.props.percent + '%';
       var filledBar = wp.element.createElement(
         'div',
-        { class: 'acclectic-uploader-progress-bar-filled', style: 'width: ' + width });
+        { id: this.props.id, class: 'acclectic-uploader-progress-bar-filled', style: 'width: ' + width });
       return wp.element.createElement('div', { class: 'acclectic-uploader-progress-bar-background' }, filledBar);
     }
   }
 
   /**
    * A React component that renders a file upload status. Expects properties: 
+   * * id: The uploader ID of the file
    * * filename: The name of the file
    * * filesize: A human-readable string of the file size (e.g. 56kB)
    * * percent: An integer representing the percentage complete (e.g. 20)
@@ -37,22 +38,20 @@ window.uploadTracker = function (jq) {
         { class: 'acclectic-uploader-file-icon', src: config.assetsPath + iconFile });
       var progressBar = wp.element.createElement(FileStatusProgressBar, { percent: percentDone });
       var textStatus = wp.element.createElement('div', { class: 'acclectic-uploader-file-text' }, fileText);
-      return wp.element.createElement('div', { class: 'acclectic-uploader-file-line' }, icon, progressBar, textStatus);
+      return wp.element.createElement(
+        'div',
+        { class: 'acclectic-uploader-file-line', id: this.props.id },
+        icon, progressBar, textStatus
+      );
     }
   }
 
   /**
-   * A React component that renders an upload status header. Expects properties:
+   * A React component that renders an upload header with title and close button. Expects properties:
    * * folder: The name of the destination folder
-   * * files_done: The number of files done
-   * * total_files: The total number of files
-   * * percent: An integer representing the total percentage complete (e.g. 20)
    */
   class UploadStatusHeader extends React.Component {
     render() {
-      var percentDone = parseInt(this.props.percent) || 0;
-      var filesDone = parseInt(this.props.files_done) || 0;
-      var totalFiles = parseInt(this.props.total_files) || 0;
       var folder = this.props.folder || 'All Items';
 
       var titleDiv = wp.element.createElement(
@@ -62,6 +61,26 @@ window.uploadTracker = function (jq) {
       var closeIcon = wp.element.createElement(
         'a', { class: 'acclectic-uploader-close-button', href: '#' },
         wp.element.createElement('img', { src: config.assetsPath + 'close-24px.svg' }));
+
+      return wp.element.createElement(
+        'div',
+        { class: 'acclectic-uploader-header' },
+        closeIcon, titleDiv);
+    }
+  }
+
+  /**
+   * A React component that renders a combined upload status bar. Expects properties:
+   * * files_done: The number of files done
+   * * total_files: The total number of files
+   * * percent: An integer representing the total percentage complete (e.g. 20)
+   */
+  class UploadStatusHeaderStats extends React.Component {
+    render() {
+      var percentDone = parseInt(this.props.percent) || 0;
+      var filesDone = parseInt(this.props.files_done) || 0;
+      var totalFiles = parseInt(this.props.total_files) || 0;
+
       var progressBar = wp.element.createElement(FileStatusProgressBar, { percent: percentDone });
       var statusDiv = wp.element.createElement(
         'div',
@@ -70,8 +89,8 @@ window.uploadTracker = function (jq) {
 
       return wp.element.createElement(
         'div',
-        { class: 'acclectic-uploader-header' },
-        closeIcon, titleDiv, statusDiv, progressBar);
+        { class: 'acclectic-uploader-header-stats' },
+        statusDiv, progressBar);
     }
   }
 
@@ -96,7 +115,8 @@ window.uploadTracker = function (jq) {
 
   return {
     setup: setup,
-    trackFiles: trackFiles
+    trackFiles: trackFiles,
+    updateFile: updateFile
   };
 
   /**
@@ -121,10 +141,28 @@ window.uploadTracker = function (jq) {
   function trackFiles(files) {
     addFilesToTracker(files);
     computeStats();
-    showOrUpdateDialog();
-  };
+    showDialog();
+  }
 
-  function showOrUpdateDialog() {
+  function updateFile(file) {
+    addFilesToTracker(file); // This will replace existing file entry in the map.
+    computeStats();
+
+    var lineQuery = '#' + file.id + '.acclectic-uploader-file-line';
+    var newHtml = wp.element.renderToString(getFileStatus(file));
+    jQuery(lineQuery).replaceWith(newHtml);
+
+    updateHeader();
+  }
+
+  function updateHeader() {
+    var headerQuery = '.acclectic-uploader-header-stats';
+    var newHtml = wp.element.renderToString(getHeaderStats());
+    jQuery(headerQuery).replaceWith(newHtml);
+  }
+
+  /** Shows a dialog if it does not already exist. If one exists, content of the existing dialog will be updated. */
+  function showDialog() {
     if (popup == null) {
       popup = acclecticDialog.getCustomPopup({
         class: 'acclectic-upload-dialog',
@@ -202,16 +240,26 @@ window.uploadTracker = function (jq) {
   };
 
   function getHeader() {
+    return wp.element.createElement('div', {}, getHeaderTitle(), getHeaderStats());
+  };
+
+  function getHeaderTitle() {
     return wp.element.createElement(UploadStatusHeader, {
+      folder: config.folderName
+    });
+  }
+
+  function getHeaderStats() {
+    return wp.element.createElement(UploadStatusHeaderStats, {
       percent: Math.round(stats.filesDone / stats.totalFiles * 100),
       files_done: stats.filesDone,
       total_files: stats.totalFiles,
-      folder: config.folderName
     });
-  };
+  }
 
   function getFileStatus(fileDict) {
     return wp.element.createElement(FileStatus, {
+      id: fileDict.id,
       filename: fileDict.name,
       filesize: fileSizeIEC(fileDict.size),
       percent: fileDict.percent
