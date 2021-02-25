@@ -21,7 +21,7 @@ Acclectic Media Organizer creates a virtual file system that lets you better org
 **Hierarchical File System**
 Create folders and subfolders, just like in a real file system.
 
-**Virtual File System*
+**Virtual File System**
 Acclectic Media Organizer creates a virtual file system, so all links to your media files will remain the same and continue to work.
 
 **Direct Upload to Folder**
