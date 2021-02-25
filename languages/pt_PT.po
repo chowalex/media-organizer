@@ -5,69 +5,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Media Organizer\n"
-"Language: fr\n"
+"Language: pt\n"
 
 #: inc/strings.php:12
 msgid "Folders"
-msgstr "Dossiers"
+msgstr "Pastas"
 
 #: inc/strings.php:13
 msgid "Create Folder"
-msgstr "Créer le dossier"
+msgstr "Criar pasta"
 
 #: inc/strings.php:14
 msgid "Rename Folder"
-msgstr "Renommer le dossier"
+msgstr "Renomear pasta"
 
 #: inc/strings.php:15
 msgid "Delete Folder"
-msgstr "Supprimer le dossier"
+msgstr "Excluir pasta"
 
 #: inc/strings.php:16
 msgid "All Items"
-msgstr "Tous les articles"
+msgstr "Todos os itens"
 
 #: inc/strings.php:17
 msgid "Unassigned Items"
-msgstr "Éléments non attribués"
+msgstr "Itens não atribuídos"
 
 #: inc/strings.php:18
 msgid "New Folder"
-msgstr "Nouveau dossier"
+msgstr "Nova pasta"
 
 #: inc/strings.php:19
 msgid "Moving one item"
-msgstr "Déplacer un élément"
+msgstr "Movendo um item"
 
 #: inc/strings.php:21
 msgid "OK"
-msgstr "d'accord"
+msgstr "OK"
 
 #: inc/strings.php:22
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Cancelar"
 
 #: inc/strings.php:24
 msgid "Any subfolders will also be deleted, and all items in this folder and its subfolders will become unassigned."
-msgstr "Tous les sous-dossiers seront également supprimés et tous les éléments de ce dossier et de ses sous-dossiers ne seront plus attribués."
+msgstr "Todas as subpastas também serão excluídas e todos os itens nesta pasta e suas subpastas deixarão de ser atribuídos."
 
 #: inc/strings.php:20
 msgid "Moving {n} items"
-msgstr "Déplacement de {n} éléments"
+msgstr "Movendo {n} itens"
 
 #: inc/strings.php:23
 msgid "Delete Folder {f}?"
-msgstr "Supprimer le dossier {f}?"
+msgstr "Excluir pasta {f}?"
 
 #: inc/strings.php:25
 msgid "Uploading..."
-msgstr "Téléchargement..."
+msgstr "Enviando..."
 
 #: inc/strings.php:26
 msgid "Internal Error"
-msgstr "Erreur interne"
+msgstr "Erro interno"
 
 #: inc/strings.php:27
 msgid "Please contact customer service if this issue persists."
-msgstr "Veuillez contacter le service client si ce problème persiste."
+msgstr "Entre em contato com o atendimento ao cliente se o problema persistir."
 

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Media Organizer\n"
 "Language: de\n"
 
-#: inc/strings.php:12 inc/ui-builder.php:56
+#: inc/strings.php:12
 msgid "Folders"
 msgstr "Ordner"
 
@@ -58,4 +58,16 @@ msgstr "{N} Elemente verschieben"
 #: inc/strings.php:23
 msgid "Delete Folder {f}?"
 msgstr "Ordner löschen {f}?"
+
+#: inc/strings.php:25
+msgid "Uploading..."
+msgstr "Hochladen ..."
+
+#: inc/strings.php:26
+msgid "Internal Error"
+msgstr "Interner Fehler"
+
+#: inc/strings.php:27
+msgid "Please contact customer service if this issue persists."
+msgstr "Bitte wenden Sie sich an den Kundendienst, wenn dieses Problem weiterhin besteht."
 
