@@ -1,7 +1,8 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Acclectic Media Folders\n"
-"POT-Creation-Date: 2021-02-13 11:05-0800\n"
+"POT-Creation-Date: 2021-02-24 12:23-0800\n"
 "PO-Revision-Date: 2021-02-13 11:05-0800\n"
 "Last-Translator: \n"
 "Language-Team: Acclectic Media\n"
@@ -16,7 +17,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;__esc_html\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: inc/strings.php:12 inc/ui-builder.php:56
+#: inc/strings.php:12
 msgid "Folders"
 msgstr ""
 
@@ -68,4 +69,16 @@ msgstr ""
 msgid ""
 "Any subfolders will also be deleted, and all items in this folder and its "
 "subfolders will become unassigned."
+msgstr ""
+
+#: inc/strings.php:25
+msgid "Uploading..."
+msgstr ""
+
+#: inc/strings.php:26
+msgid "Internal Error"
+msgstr ""
+
+#: inc/strings.php:27
+msgid "Please contact customer service if this issue persists."
 msgstr ""

@@ -5,69 +5,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Media Organizer\n"
-"Language: fr\n"
+"Language: pl\n"
 
 #: inc/strings.php:12
 msgid "Folders"
-msgstr "Dossiers"
+msgstr "Lornetka składana"
 
 #: inc/strings.php:13
 msgid "Create Folder"
-msgstr "Créer le dossier"
+msgstr "Utwórz folder"
 
 #: inc/strings.php:14
 msgid "Rename Folder"
-msgstr "Renommer le dossier"
+msgstr "Zmień nazwę folderu"
 
 #: inc/strings.php:15
 msgid "Delete Folder"
-msgstr "Supprimer le dossier"
+msgstr "Usunięty folder"
 
 #: inc/strings.php:16
 msgid "All Items"
-msgstr "Tous les articles"
+msgstr "Wszystkie przedmioty"
 
 #: inc/strings.php:17
 msgid "Unassigned Items"
-msgstr "Éléments non attribués"
+msgstr "Nieprzypisane elementy"
 
 #: inc/strings.php:18
 msgid "New Folder"
-msgstr "Nouveau dossier"
+msgstr "Nowy folder"
 
 #: inc/strings.php:19
 msgid "Moving one item"
-msgstr "Déplacer un élément"
+msgstr "Przenoszenie jednego elementu"
 
 #: inc/strings.php:21
 msgid "OK"
-msgstr "d'accord"
+msgstr "ok"
 
 #: inc/strings.php:22
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Anuluj"
 
 #: inc/strings.php:24
 msgid "Any subfolders will also be deleted, and all items in this folder and its subfolders will become unassigned."
-msgstr "Tous les sous-dossiers seront également supprimés et tous les éléments de ce dossier et de ses sous-dossiers ne seront plus attribués."
+msgstr "Wszelkie podfoldery również zostaną usunięte, a wszystkie elementy w tym folderze i jego podfolderach staną się nieprzypisane."
 
 #: inc/strings.php:20
 msgid "Moving {n} items"
-msgstr "Déplacement de {n} éléments"
+msgstr "Przenoszenie {n} elementów"
 
 #: inc/strings.php:23
 msgid "Delete Folder {f}?"
-msgstr "Supprimer le dossier {f}?"
+msgstr "Usunąć folder {f}?"
 
 #: inc/strings.php:25
 msgid "Uploading..."
-msgstr "Téléchargement..."
+msgstr "Przesyłanie ..."
 
 #: inc/strings.php:26
 msgid "Internal Error"
-msgstr "Erreur interne"
+msgstr "Błąd wewnętrzny"
 
 #: inc/strings.php:27
 msgid "Please contact customer service if this issue persists."
-msgstr "Veuillez contacter le service client si ce problème persiste."
+msgstr "Skontaktuj się z obsługą klienta, jeśli problem będzie się powtarzał."
 

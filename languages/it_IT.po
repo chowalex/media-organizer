@@ -5,69 +5,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Media Organizer\n"
-"Language: fr\n"
+"Language: it\n"
 
 #: inc/strings.php:12
 msgid "Folders"
-msgstr "Dossiers"
+msgstr "Cartelle"
 
 #: inc/strings.php:13
 msgid "Create Folder"
-msgstr "Créer le dossier"
+msgstr "Creare una cartella"
 
 #: inc/strings.php:14
 msgid "Rename Folder"
-msgstr "Renommer le dossier"
+msgstr "Rinomina cartella"
 
 #: inc/strings.php:15
 msgid "Delete Folder"
-msgstr "Supprimer le dossier"
+msgstr "Elimina cartella"
 
 #: inc/strings.php:16
 msgid "All Items"
-msgstr "Tous les articles"
+msgstr "Tutti gli articoli"
 
 #: inc/strings.php:17
 msgid "Unassigned Items"
-msgstr "Éléments non attribués"
+msgstr "Articoli non assegnati"
 
 #: inc/strings.php:18
 msgid "New Folder"
-msgstr "Nouveau dossier"
+msgstr "Nuova cartella"
 
 #: inc/strings.php:19
 msgid "Moving one item"
-msgstr "Déplacer un élément"
+msgstr "Spostare un oggetto"
 
 #: inc/strings.php:21
 msgid "OK"
-msgstr "d'accord"
+msgstr "ok"
 
 #: inc/strings.php:22
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Annulla"
 
 #: inc/strings.php:24
 msgid "Any subfolders will also be deleted, and all items in this folder and its subfolders will become unassigned."
-msgstr "Tous les sous-dossiers seront également supprimés et tous les éléments de ce dossier et de ses sous-dossiers ne seront plus attribués."
+msgstr "Verranno eliminate anche tutte le sottocartelle e tutti gli elementi in questa cartella e nelle relative sottocartelle verranno annullati."
 
 #: inc/strings.php:20
 msgid "Moving {n} items"
-msgstr "Déplacement de {n} éléments"
+msgstr "Spostamento di {n} elementi"
 
 #: inc/strings.php:23
 msgid "Delete Folder {f}?"
-msgstr "Supprimer le dossier {f}?"
+msgstr "Eliminare la cartella {f}?"
 
 #: inc/strings.php:25
 msgid "Uploading..."
-msgstr "Téléchargement..."
+msgstr "Caricamento in corso ..."
 
 #: inc/strings.php:26
 msgid "Internal Error"
-msgstr "Erreur interne"
+msgstr "Errore interno"
 
 #: inc/strings.php:27
 msgid "Please contact customer service if this issue persists."
-msgstr "Veuillez contacter le service client si ce problème persiste."
+msgstr "Si prega di contattare il servizio clienti se il problema persiste."
 

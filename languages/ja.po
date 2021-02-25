@@ -5,69 +5,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Media Organizer\n"
-"Language: fr\n"
+"Language: ja\n"
 
 #: inc/strings.php:12
 msgid "Folders"
-msgstr "Dossiers"
+msgstr "フォルダー"
 
 #: inc/strings.php:13
 msgid "Create Folder"
-msgstr "Créer le dossier"
+msgstr "フォルダーを作る"
 
 #: inc/strings.php:14
 msgid "Rename Folder"
-msgstr "Renommer le dossier"
+msgstr "フォルダの名前を変更する"
 
 #: inc/strings.php:15
 msgid "Delete Folder"
-msgstr "Supprimer le dossier"
+msgstr "フォルダを削除"
 
 #: inc/strings.php:16
 msgid "All Items"
-msgstr "Tous les articles"
+msgstr "全てのアイテム"
 
 #: inc/strings.php:17
 msgid "Unassigned Items"
-msgstr "Éléments non attribués"
+msgstr "未割り当てのアイテム"
 
 #: inc/strings.php:18
 msgid "New Folder"
-msgstr "Nouveau dossier"
+msgstr "新しいフォルダ"
 
 #: inc/strings.php:19
 msgid "Moving one item"
-msgstr "Déplacer un élément"
+msgstr "1つのアイテムを移動する"
 
 #: inc/strings.php:21
 msgid "OK"
-msgstr "d'accord"
+msgstr "OK"
 
 #: inc/strings.php:22
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "キャンセル"
 
 #: inc/strings.php:24
 msgid "Any subfolders will also be deleted, and all items in this folder and its subfolders will become unassigned."
-msgstr "Tous les sous-dossiers seront également supprimés et tous les éléments de ce dossier et de ses sous-dossiers ne seront plus attribués."
+msgstr "サブフォルダもすべて削除され、このフォルダとそのサブフォルダ内のすべてのアイテムの割り当てが解除されます。"
 
 #: inc/strings.php:20
 msgid "Moving {n} items"
-msgstr "Déplacement de {n} éléments"
+msgstr "{n}アイテムの移動"
 
 #: inc/strings.php:23
 msgid "Delete Folder {f}?"
-msgstr "Supprimer le dossier {f}?"
+msgstr "フォルダ{f}を削除しますか？"
 
 #: inc/strings.php:25
 msgid "Uploading..."
-msgstr "Téléchargement..."
+msgstr "アップロード中..."
 
 #: inc/strings.php:26
 msgid "Internal Error"
-msgstr "Erreur interne"
+msgstr "内部エラー"
 
 #: inc/strings.php:27
 msgid "Please contact customer service if this issue persists."
-msgstr "Veuillez contacter le service client si ce problème persiste."
+msgstr "この問題が解決しない場合は、カスタマーサービスにご連絡ください。"
 

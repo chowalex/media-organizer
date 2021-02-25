@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Media Organizer\n"
 "Language: zh-Hant\n"
 
-#: inc/strings.php:12 inc/ui-builder.php:56
+#: inc/strings.php:12
 msgid "Folders"
 msgstr "資料夾"
 
@@ -58,4 +58,16 @@ msgstr "移動{n}個項目"
 #: inc/strings.php:23
 msgid "Delete Folder {f}?"
 msgstr "刪除文件夾{f}？"
+
+#: inc/strings.php:25
+msgid "Uploading..."
+msgstr "上載中..."
+
+#: inc/strings.php:26
+msgid "Internal Error"
+msgstr "內部錯誤"
+
+#: inc/strings.php:27
+msgid "Please contact customer service if this issue persists."
+msgstr "如果此問題仍然存在，請聯繫客戶服務。"
 
