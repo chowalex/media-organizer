@@ -47,7 +47,7 @@
      */
     setupItemDeletionListener: function () {
       jq(document).ajaxComplete(function (event, xhr, settings) {
-        if ((settings.data.indexOf("action=delete-post") > -1)) {
+        if (settings && settings.data && (settings.data.indexOf("action=delete-post") > -1)) {
           me.getFolderTree();
         }
       });
@@ -1121,4 +1121,4 @@ String.prototype.formatUnicorn = String.prototype.formatUnicorn ||
     }
 
     return str;
-  };   
+  };

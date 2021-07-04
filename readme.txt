@@ -3,8 +3,8 @@ Contributors: acclectic
 Tags: media, media library, media library folders, attachment folders, media categories, media library categories, attachment categories, file manager, subfolders, file manager, directories, folder, folders, organize
 Requires at least: 5.0.0
 Tested up to: 5.6
-Stable tag: trunk
-Version: 1.0
+Stable tag: 1.1
+Version: 1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
@@ -154,6 +154,9 @@ Acclectic Media Organizer is available in these languages:
 * Spanish
 
 == Changelog ==
+
+= 1.1 - July 4, 2021 =
+- Check for null settings on refresh.
 
 = 1.0 - February 24, 2021 = 
 - First public release.
