@@ -21,7 +21,7 @@
   var selectedFolderId = ALL_FOLDER_ID;
   var editable = true;
 
-  var defaultNewFolderName = '[' + i18n['newFolder'] + ']';
+  var defaultNewFolderName = '[' + accmo_i18n['newFolder'] + ']';
 
   var me = {
     jstreeUrl: config.thirdPartyPath + '/jstree',
@@ -186,7 +186,7 @@
         'media_organizer_all',
         'all-item-count',
         config.assetsPath + 'items_all.svg',
-        i18n['allItems'],
+        accmo_i18n['allItems'],
         0
       ));
       cards.push(me.getCard(
@@ -194,7 +194,7 @@
         'media_organizer_unassigned',
         'unassigned-item-count',
         config.assetsPath + 'items_unassigned.svg',
-        i18n['unassignedItems'],
+        accmo_i18n['unassignedItems'],
         0
       ));
 
@@ -202,11 +202,11 @@
       if (showButtons) {
         buttons.push(me.getButton(
           'header_action_add_folder',
-          i18n['createFolder'],
+          accmo_i18n['createFolder'],
           config.assetsPath + 'folder_add_light.svg'));
       }
 
-      var header = me.getHeader(showTitle ? i18n['folders'] : null, cards, buttons);
+      var header = me.getHeader(showTitle ? accmo_i18n['folders'] : null, cards, buttons);
       var folderTree = wp.element.createElement('div', { id: 'acclectic-jstree' });
 
       return wp.element.createElement('div', { class: 'control-panel-main' }, header, folderTree);
@@ -416,7 +416,7 @@
 
     /** Returns a tooltip indicating the number of items being moved/assigned. */
     getDragText: function (num) {
-      var contentString = (parseInt(num) > 1) ? i18n['movingPluralItems'] : i18n['movingSingularItem'];
+      var contentString = (parseInt(num) > 1) ? accmo_i18n['movingPluralItems'] : accmo_i18n['movingSingularItem'];
       tooltip = wp.element.createElement(DragTooltip, { contents: contentString, n: num }, null);
       return wp.element.renderToString(tooltip);
     },
@@ -480,7 +480,7 @@
     /** Returns the human readable name of the selected folder. */
     getSelectedFolderName: function () {
       let selectedFolderId = me.getSelectedFolder();
-      let selectedFolderName = i18n['allItems'];
+      let selectedFolderName = accmo_i18n['allItems'];
 
       // Early exit.
       if (selectedFolderId == ALL_FOLDER_ID || selectedFolderId == UNASSIGNED_FOLDER_ID || !folders) {
@@ -763,7 +763,7 @@
             "separator_after": true,
             "_disabled": false,
             "icon": me.jstreeUrl + '/themes/acclectic/folder_add_dark.svg',
-            "label": i18n['createFolder'],
+            "label": accmo_i18n['createFolder'],
             "action": function (data) {
               tree.get().create_node(
                 tree.get().get_node(data.reference),
@@ -777,7 +777,7 @@
             "separator_after": false,
             "_disabled": false,
             "icon": me.jstreeUrl + '/themes/acclectic/folder_edit.svg',
-            "label": i18n['renameFolder'],
+            "label": accmo_i18n['renameFolder'],
             "action": function (data) {
               tree.get().edit(tree.get().get_node(data.reference));
             }
@@ -788,16 +788,16 @@
             "separator_after": false,
             "_disabled": false,
             "icon": me.jstreeUrl + '/themes/acclectic/folder_delete.svg',
-            "label": i18n['deleteFolder'],
+            "label": accmo_i18n['deleteFolder'],
             "action": function (data) {
               var folderNameToDelete = tree.get().get_node(data.reference).text;
 
               acclecticDialog.getModal({
-                title: i18n['deleteFolderTitle'].formatUnicorn({ f: folderNameToDelete }),
-                description: i18n['deleteFolderDescription'],
+                title: accmo_i18n['deleteFolderTitle'].formatUnicorn({ f: folderNameToDelete }),
+                description: accmo_i18n['deleteFolderDescription'],
                 buttons: [
-                  { label: i18n['ok'], handler: function () { tree.deleteFolder(data); } },
-                  { label: i18n['cancel'] }
+                  { label: accmo_i18n['ok'], handler: function () { tree.deleteFolder(data); } },
+                  { label: accmo_i18n['cancel'] }
                 ],
               }).show();
             }
@@ -1062,9 +1062,9 @@
     /** A default error handler. */
     defaultErrorHandler: function (e, status, error) {
       acclecticDialog.show({
-        title: i18n['internalError'],
-        description: i18n['contactCustomerService'],
-        buttons: [{ label: i18n['ok'] }],
+        title: accmo_i18n['internalError'],
+        description: accmo_i18n['contactCustomerService'],
+        buttons: [{ label: accmo_i18n['ok'] }],
       });
       var httpStatus = e.status + ":" + e.statusText;
       console.log("Status: " + httpStatus + "\nError:\n" + error);

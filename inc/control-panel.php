@@ -137,7 +137,7 @@ class ControlPanel
 
         wp_localize_script(
             'acclectic-media-organizer-main',
-            'i18n',
+            'accmo_i18n',
             Strings::get()
         );
 
