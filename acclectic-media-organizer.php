@@ -3,7 +3,7 @@
  * Plugin Name: Acclectic Media Organizer
  * Plugin URI:  https://www.acclectic.com/
  * Description: A media organizer that lets you categorize and group media files into virtual folders.
- * Version:     1.3
+ * Version:     1.4
  * Author:      Acclectic Media
  * Author URI:  https://www.acclectic.com
  * Text Domain: acclectic-media-organizer

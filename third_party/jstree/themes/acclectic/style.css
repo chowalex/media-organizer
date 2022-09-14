@@ -7,7 +7,7 @@
 
 .jstree-child-count {
   float: right;
-  background-color: #76767666;
+  background-color: var(--acc-primary);
   border-radius: 4px;
   min-width: 30px;
   height: 22px;

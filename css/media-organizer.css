@@ -3,6 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 /* ******** Top-level blocks ******** */
 
+:root {
+  --acc-primary: #2271b1;
+  --acc-button: var(--acc-primary);
+  --acc-primary-50: #2271b188;
+  --acc-primary-25: #2271b144;
+}
+
 .control-panel-main {
   opacity: 1;
   flex: 0 0 auto;
@@ -180,7 +187,7 @@
 }
 
 .control-panel-header .header-action-button {
-  background-color: #76767688;
+  background-color: var(--acc-button);
   border-radius: 6px;
   line-height: 0px;
   padding: 10px;
@@ -218,7 +225,7 @@
 .control-panel-header .header-cards ul li a .card-count {
   float: right;
   color: #ffffff;
-  background-color: #76767666;
+  background-color: var(--acc-primary);
   font-size: 11px;
   min-width: 30px;
   height: 24px;
