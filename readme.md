@@ -8,7 +8,6 @@ Version: 1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
-Donate link: https://www.acclectic.com/
 
 A file manager for your media library. Organize your attachments, photos, and other media items into folders, and easily filter items by folder when you add them to posts and pages!
 
